@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "pdelib.h"
+//#define DEBUG
 
 // Argumentos do programa
 const struct option stopcoes[] = {
@@ -49,12 +50,13 @@ int main(int argc, char *argv[]) {
         }
     }
 
+#ifdef DEBUG
     // Printa as opões que recebeu
     printf("\nnx = %d\n", nx);
     printf("\nny = %d\n", ny);
     printf("\ni = %d\n", max_iterations);
     printf("\no = %s\n", output_file);
-
+#endif
     /******************************************/
 
     // Comprimento dos lados
@@ -130,8 +132,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    /* Printar essa caralha toda agora */
-
+#ifdef DEBUG
     printf("\n");
     for(int i = 0; i < (nx * ny) - 2; i++) {
         printf("%lf ", SL.away_upper_diagonal[i]);
@@ -158,17 +159,20 @@ int main(int argc, char *argv[]) {
         printf("%lf ", SL.b[i]);
     }
     printf("\n");
+#endif
 
-    /* Jogar o Sistema Linear no Gauss-Seidel */
+    /* Resolver o Sistema Linear pelo método de Gauss-Seidel */
     t_float *x = calloc(SL.n, sizeof(t_float)); // Vetor solução
     gaussSeidel(&SL, x, error, max_iterations);
 
+#ifdef DEBUG
     printf("\n ## Vetor Solução ## \n");
     printf("X = ");
     for(int i = 0; i < SL.n; i++) {
         printf("%lf ", x[i]);
     }
     printf("\n\n");
+#endif
 
     return 0;
 }
