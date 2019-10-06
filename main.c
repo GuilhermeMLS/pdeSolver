@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "pdelib.h"
-//#define DEBUG
+#define DEBUG
 
 // Argumentos do programa
 const struct option stopcoes[] = {
@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     int ny; // N
 
     int max_iterations;
-    t_float error;
+    t_float error = 0.0;
     int opt;
     char *output_file;
 
@@ -158,7 +158,9 @@ int main(int argc, char *argv[]) {
 
     /* Resolver o Sistema Linear pelo método de Gauss-Seidel */
     t_float *x = calloc(SL.n, sizeof(t_float)); // Vetor solução
-    gaussSeidel(&SL, x, error, max_iterations);
+    double *iterations_timestamp = calloc(max_iterations+1, sizeof(double));
+    t_float *residues = calloc(max_iterations, sizeof(double));
+    gaussSeidel(&SL, x, error, max_iterations, iterations_timestamp, residues);
 
 #ifdef DEBUG
     printf("\n ## Vetor Solução ## \n");
@@ -166,11 +168,16 @@ int main(int argc, char *argv[]) {
     for(int i = 0; i < SL.n; i++) {
         printf("%lf ", x[i]);
     }
-    printf("\n\n");
+    printf("\n");
+    printf("\n ## Vetor de timestamps para cada iteração de Gauss Seidel ## \n");
+    for(int i = 1; i < max_iterations; i++) {
+        printf("%lf ", iterations_timestamp[i]);
+    }
 #endif
 
+    double averageTimeGS = averageTimeGaussSeidel(iterations_timestamp, max_iterations);
     /* Gera o arquivo de saída */
-    generateOuputFile(x, SL.n, output_file);
+    generateOuputFile(x, SL.n, averageTimeGS, output_file, residues, max_iterations);
 
     return 0;
 }

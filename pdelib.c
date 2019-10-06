@@ -14,6 +14,14 @@ t_float f(t_float xi, t_float yj)
     );
 }
 
+// Retorna tempo em milisegundos
+double timestamp(void)
+{
+    struct timeval tp;
+    gettimeofday(&tp, NULL);
+    return((double)(tp.tv_sec*1000.0 + tp.tv_usec/1000.0));
+}
+
 void allocatePentadiagonalLinearSystem(t_LS5Diag *SL, int nx, int ny)
 {
     SL->away_upper_diagonal = malloc(sizeof(t_float) * ((nx * ny) - 2));
@@ -27,10 +35,19 @@ void allocatePentadiagonalLinearSystem(t_LS5Diag *SL, int nx, int ny)
     SL->n = nx * ny;
 }
 
-void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations)
-{
-    double norma, diff, xk; int k = 1, i;
+void gaussSeidel(
+    t_LS5Diag *SL,
+    t_float *x,
+    t_float error,
+    int max_iterations,
+    double *iterations_timestamp,
+    t_float *residues
+) {
+    double norma, diff, xk, initial_time, final_time;
+    int k = 1, i;
+
     do {
+        initial_time = timestamp();
         // primeira equação fora do laço
         i = 0;
         xk = (SL->b[i] - (SL->upper_diagonal[i] * x[i+1]) -
@@ -79,8 +96,16 @@ void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations)
         norma = (diff > norma) ? (diff) : (norma);
         x[i] = xk;
 
+        final_time = timestamp();
+        iterations_timestamp[k] = final_time - initial_time;
+
+        //TODO: verificar esse resíduo
+        residues[k-1] = norma;
+
         k++;
-    } while (norma > error && k < max_iterations) ;
+        //TODO: implementar critério de parada com base no erro
+    //} while (norma > error && k < max_iterations) ;
+    } while (k < max_iterations);
 }
 
 void show_help(char *name)
@@ -95,13 +120,47 @@ void show_help(char *name)
     exit(-1);
 }
 
-void generateOuputFile(t_float *x, int n, char *filename)
-{
+void generateOuputFile(
+    t_float *x,
+    int n,
+    double averageTimeGS,
+    char *filename,
+    t_float *residues,
+    int max_iterations
+) {
     FILE *file_pointer;
     file_pointer = fopen(filename, "w");
+
+    // Firulas iniciais
+    fprintf(file_pointer, "###########\n");
+    fprintf(file_pointer, "# Tempo Método GS: %lf\n", averageTimeGS);
+    fprintf(file_pointer, "#\n");
+    fprintf(file_pointer, "# Norma L2 do Residuo\n");
+    for (int i = 0; i < max_iterations; ++i) {
+        fprintf(file_pointer, "# i=%d: %lf\n", i, residues[i]);
+    }
+    fprintf(file_pointer, "###########\n\n");
+
+    //valores
     for (int i = 0; i < n; i++) {
         fprintf(file_pointer, "%lf ", x[i]);
     }
 
     fclose(file_pointer);
 }
+
+
+/**
+* A constructor.
+* A more elaborate description of the constructor.
+*/
+double averageTimeGaussSeidel(double *iterations_timestamp, int max_iterations)
+{
+    double average = 0;
+    for(int i = 0; i < max_iterations; i++) {
+        average += iterations_timestamp[i] / max_iterations;
+    }
+
+    return average;
+}
+
