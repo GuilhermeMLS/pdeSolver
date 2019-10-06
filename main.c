@@ -57,7 +57,6 @@ int main(int argc, char *argv[]) {
     printf("\ni = %d\n", max_iterations);
     printf("\no = %s\n", output_file);
 #endif
-    /******************************************/
 
     // Comprimento dos lados
     t_float lx = pi;
@@ -100,31 +99,27 @@ int main(int argc, char *argv[]) {
         for (int i = 1; i < nx; i++) {
             SL.b[k] = pow(hx, 2) * pow(hy, 2) * f(i * hx, j * hy); //ok
 
-            int fronteira_e = 0; // fronteira da esquerda
-            int fronteira_d = 0; // fronteira da direita
+            int left_boundary = 0; // fronteira da esquerda
+            int right_boundary = 0; // fronteira da direita
 
-            //ok
             if (i == 1) {
-                SL.b[k] -= ( -2 * pow(hy, 2) - hx * pow(hy, 2)) * fronteira_e;
+                SL.b[k] -= ( -2 * pow(hy, 2) - hx * pow(hy, 2)) * left_boundary;
                 if (j > 1) {
                     SL.bottom_diagonal[k-1] = 0;
                 }
             }
 
-            //ok
             if (i == nx-1) {
-                SL.b[k] -= (hx * pow(hy, 2) - 2 * pow(hy, 2)) * fronteira_d;
+                SL.b[k] -= (hx * pow(hy, 2) - 2 * pow(hy, 2)) * right_boundary;
                 if (j < ny) {
                     SL.upper_diagonal[k+1] = 0;
                 }
             }
 
-            //Ok
             if (j == 1) {
                 SL.b[k] -= (-2 * pow(hx, 2) - pow(hx, 2) * hy) * sin(2 * pi * (pi - i)) * sinh(pow(pi, 2));
             }
 
-            //Ok
             if (j == ny) {
                 SL.b[k] -= (pow(hx, 2) * hy - 2 * pow(hx, 2) * sin(2 * pi * i) * sinh(pow(pi, 2)));
             }

@@ -1,4 +1,3 @@
-// implementa as funções de Gauss Seidel, diferenças finitas e utilitários
 #include "pdelib.h"
 #include <math.h>
 #include <stdlib.h>
@@ -24,7 +23,7 @@ void allocatePentadiagonalLinearSystem(t_LS5Diag *SL, int nx, int ny)
     // Termos independentes
     SL->b = malloc(sizeof(t_float) * (nx * ny));
     // Número de equações do Sistema Linear
-    SL->n = nx*ny;
+    SL->n = nx * ny;
 }
 
 void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations)
@@ -55,7 +54,6 @@ void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations)
                 SL->upper_diagonal[i] * x[i+1] -
                 SL->away_upper_diagonal[i] * x[i+2]
             ) / SL->main_diagonal[i];
-            // Calcula norma || x(k) - x(k - 1) ||
             diff = fabs(xk - x[i]);
             norma = (diff > norma) ? (diff) : (norma);
             x[i] = xk;
@@ -71,7 +69,7 @@ void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations)
         norma = (diff > norma) ? (diff) : (norma);
         x[i] = xk;
 
-        // ultima equação fora do laço
+        // Última equação fora do laço
         i++;
         xk = (SL->b[i] - SL->away_bottom_diagonal[i-2]*x[i-2] -
             SL->bottom_diagonal[i-1] * x[i-1]
@@ -84,7 +82,8 @@ void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations)
     } while (norma > error && k < max_iterations) ;
 }
 
-void show_help(char *name) {
+void show_help(char *name)
+{
     fprintf(stderr, "\
         [uso] %s <opções>\n\
         --nx INTEGER     Número de pontos da malha na direção de x.\n\
@@ -95,7 +94,8 @@ void show_help(char *name) {
     exit(-1);
 }
 
-void generateOuputFile(t_float *x, int n, char *filename) {
+void generateOuputFile(t_float *x, int n, char *filename)
+{
     FILE *file_pointer;
     file_pointer = fopen(filename, "w");
     for (int i = 0; i < n; i++) {

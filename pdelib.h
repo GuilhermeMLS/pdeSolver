@@ -1,6 +1,5 @@
 #include <unistd.h>
 #include <getopt.h>
-// Cabeçalhos das funções da pdelib.c e structs
 
 #define pi 3.14159265359
 typedef double t_float;
