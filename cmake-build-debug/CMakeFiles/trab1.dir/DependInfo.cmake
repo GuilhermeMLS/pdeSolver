@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/guilhermemorais/CLionProjects/icc/trab1/main.c" "/Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug/CMakeFiles/trab1.dir/main.c.o"
-  "/Users/guilhermemorais/CLionProjects/icc/trab1/pdelib.c" "/Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug/CMakeFiles/trab1.dir/pdelib.c.o"
+  "/Users/guilhermemorais/CLionProjects/trab1-icc/main.c" "/Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug/CMakeFiles/trab1.dir/main.c.o"
+  "/Users/guilhermemorais/CLionProjects/trab1-icc/pdelib.c" "/Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug/CMakeFiles/trab1.dir/pdelib.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

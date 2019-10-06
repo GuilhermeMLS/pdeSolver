@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/guilhermemorais/CLionProjects/icc/trab1/main.c
+/Users/guilhermemorais/CLionProjects/trab1-icc/main.c
 stdio.h
 -
 stdlib.h
@@ -14,9 +14,9 @@ stdlib.h
 math.h
 -
 pdelib.h
-/Users/guilhermemorais/CLionProjects/icc/trab1/pdelib.h
+/Users/guilhermemorais/CLionProjects/trab1-icc/pdelib.h
 
-/Users/guilhermemorais/CLionProjects/icc/trab1/pdelib.h
+/Users/guilhermemorais/CLionProjects/trab1-icc/pdelib.h
 unistd.h
 -
 getopt.h

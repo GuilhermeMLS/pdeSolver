@@ -59,10 +59,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/guilhermemorais/CLionProjects/icc/trab1
+CMAKE_SOURCE_DIR = /Users/guilhermemorais/CLionProjects/trab1-icc
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug
 
 #=============================================================================
 # Target rules for target CMakeFiles/trab1.dir
@@ -71,7 +71,7 @@ CMAKE_BINARY_DIR = /Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-de
 CMakeFiles/trab1.dir/all:
 	$(MAKE) -f CMakeFiles/trab1.dir/build.make CMakeFiles/trab1.dir/depend
 	$(MAKE) -f CMakeFiles/trab1.dir/build.make CMakeFiles/trab1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target trab1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target trab1"
 .PHONY : CMakeFiles/trab1.dir/all
 
 # Include target in all.
@@ -81,9 +81,9 @@ all: CMakeFiles/trab1.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/trab1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/trab1.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/trab1.dir/rule
 
 # Convenience name for target.
