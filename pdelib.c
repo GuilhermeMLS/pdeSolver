@@ -129,7 +129,11 @@ void generateOuputFile(
     double averageTimeGS,
     char *filename,
     t_float *residues,
-    int max_iterations
+    int max_iterations,
+    int nx,
+    int ny,
+    int hx,
+    int hy
 ) {
     FILE *file_pointer;
     file_pointer = fopen(filename, "w");
@@ -145,8 +149,14 @@ void generateOuputFile(
     fprintf(file_pointer, "###########\n\n");
 
     //valores
-    for (int i = 0; i < n; i++) {
-        fprintf(file_pointer, "%lf ", x[i]);
+    fprintf(file_pointer, "| x | y | z |\n");
+//    for (int i = 0; i < n; i++) {
+//        fprintf(file_pointer, "%lf %lf %lf",x[i]);
+//    }
+    for (int i = 1; i < nx; ++i) {
+        for (int j = 0; j < ny; ++j) {
+            fprintf(file_pointer, "%d %d %lf\n", i*hx, j*hy, x[i]);
+        }
     }
 
     fclose(file_pointer);

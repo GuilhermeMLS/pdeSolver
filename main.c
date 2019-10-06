@@ -177,7 +177,7 @@ int main(int argc, char *argv[]) {
 
     double averageTimeGS = averageTimeGaussSeidel(iterations_timestamp, max_iterations);
     /* Gera o arquivo de saída */
-    generateOuputFile(x, SL.n, averageTimeGS, output_file, residues, max_iterations);
+    generateOuputFile(x, SL.n, averageTimeGS, output_file, residues, max_iterations, nx, ny, hx, hy);
 
     return 0;
 }
