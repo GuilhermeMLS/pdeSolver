@@ -25,3 +25,5 @@ void allocatePentadiagonalLinearSystem(t_LS5Diag *SL, int nx, int ny);
 void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations);
 
 void show_help(char *name);
+
+void generateOuputFile(t_float *x, int n, char *filename);

@@ -174,5 +174,8 @@ int main(int argc, char *argv[]) {
     printf("\n\n");
 #endif
 
+    /* Gera o arquivo de saída */
+    generateOuputFile(x, SL.n, output_file);
+
     return 0;
 }

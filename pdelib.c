@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
 // Função f(xi, yi)
 t_float f(t_float xi, t_float yj) {
     return 4 * pow(pi, 2) * (
@@ -85,7 +84,6 @@ void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations)
     } while (norma > error && k < max_iterations) ;
 }
 
-
 void show_help(char *name) {
     fprintf(stderr, "\
         [uso] %s <opções>\n\
@@ -95,4 +93,14 @@ void show_help(char *name) {
         --o STRING       Nome do arquivo de saída.\n\
         ", name);
     exit(-1);
+}
+
+void generateOuputFile(t_float *x, int n, char *filename) {
+    FILE *file_pointer;
+    file_pointer = fopen(filename, "w");
+    for (int i = 0; i < n; i++) {
+        fprintf(file_pointer, "%lf ", x[i]);
+    }
+
+    fclose(file_pointer);
 }
