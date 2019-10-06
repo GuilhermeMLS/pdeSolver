@@ -160,7 +160,7 @@ int main(int argc, char *argv[]) {
     t_float *x = calloc(SL.n, sizeof(t_float)); // Vetor solução
     double *iterations_timestamp = calloc(max_iterations+1, sizeof(double));
     t_float *residues = calloc(max_iterations, sizeof(double));
-    gaussSeidel(&SL, x, error, max_iterations, iterations_timestamp, residues);
+    gaussSeidel(&SL, x, error, max_iterations, iterations_timestamp, residues, nx);
 
 #ifdef DEBUG
     printf("\n ## Vetor Solução ## \n");

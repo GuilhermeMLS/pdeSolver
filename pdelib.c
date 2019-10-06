@@ -41,7 +41,8 @@ void gaussSeidel(
     t_float error,
     int max_iterations,
     double *iterations_timestamp,
-    t_float *residues
+    t_float *residues,
+    int nx
 ) {
     double norma, diff, xk, initial_time, final_time;
     int k = 1, i;
@@ -100,7 +101,9 @@ void gaussSeidel(
         iterations_timestamp[k] = final_time - initial_time;
 
         //TODO: verificar esse resíduo
-        residues[k-1] = norma;
+
+        // t_float *R = calloc(SL->n, sizeof(t_float));
+        residues[k-1] = calculateResidue(SL, x, nx);
 
         k++;
         //TODO: implementar critério de parada com base no erro
@@ -149,11 +152,6 @@ void generateOuputFile(
     fclose(file_pointer);
 }
 
-
-/**
-* A constructor.
-* A more elaborate description of the constructor.
-*/
 double averageTimeGaussSeidel(double *iterations_timestamp, int max_iterations)
 {
     double average = 0;
@@ -164,3 +162,41 @@ double averageTimeGaussSeidel(double *iterations_timestamp, int max_iterations)
     return average;
 }
 
+t_float calculateResidue (t_LS5Diag *SL, t_float *x, int nx)
+{
+    t_float R[SL->n];
+    for (int j = 0; j < SL->n; ++j) {
+        R[j] = 0.0;
+    }
+    int i = 1;
+
+    // primeira equação
+    R[i] = SL->b[i] - (SL->main_diagonal[i] * x[i] + SL->upper_diagonal[i] * x[i+1] + SL->away_upper_diagonal[i] * x[i+nx]);
+
+    // equações centrais
+    for (int i = 2; i < SL->n; ++i) {
+        if (i > nx) {
+            R[i] = SL->b[i] - ( SL->main_diagonal[i] * x[i] +
+                    SL->away_bottom_diagonal[i] * x[i - nx] +
+                    SL->bottom_diagonal[i] * x[i-1] +
+                    SL->upper_diagonal[i] * x[i+1] +
+                    SL->away_upper_diagonal[i] * x[i+nx]);
+        } else {
+            R[i] = SL->b[i] - ( SL->main_diagonal[i] * x[i] +
+                                SL->bottom_diagonal[i] * x[i-1] +
+                                SL->upper_diagonal[i] * x[i+1] +
+                                SL->away_upper_diagonal[i] * x[i+nx]);
+        }
+    }
+    // última equação
+    R[i] = SL->b[i] - (SL->main_diagonal[i] * x[i] +
+            SL->away_bottom_diagonal[i] * x[i-nx] +
+            SL->bottom_diagonal[i] * x[i-1]);
+
+    t_float sum = 0.0;
+    for (i = 1; i <= SL->n; i++) {
+        sum += R[i] * R[i];
+    }
+
+    return sqrt(sum);
+}

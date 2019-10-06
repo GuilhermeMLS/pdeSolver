@@ -23,7 +23,7 @@ t_float f(t_float xi, t_float yj);
 
 void allocatePentadiagonalLinearSystem(t_LS5Diag *SL, int nx, int ny);
 
-void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations, double *iterations_timestamp, t_float *residues);
+void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations, double *iterations_timestamp, t_float *residues, int nx);
 
 void show_help(char *name);
 
@@ -32,3 +32,5 @@ void generateOuputFile(t_float *x, int n, double averageTimeGS, char *filename, 
 double timestamp(void);
 
 double averageTimeGaussSeidel(double *iterations_timestamp, int max_iterations);
+
+t_float calculateResidue (t_LS5Diag *SL, t_float *x, int nx);
