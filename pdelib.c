@@ -4,7 +4,8 @@
 #include <stdio.h>
 
 // Função f(xi, yi)
-t_float f(t_float xi, t_float yj) {
+t_float f(t_float xi, t_float yj)
+{
     return 4 * pow(pi, 2) * (
         sin(2 * pi * xi) *
         sinh(pi * yj) +
