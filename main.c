@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "pdelib.h"
-#define DEBUG
+//#define DEBUG
 
 // Argumentos do programa
 const struct option stopcoes[] = {
