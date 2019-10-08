@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "pdelib.h"
+//#define DEBUG
 
 // Argumentos do programa
 const struct option stopcoes[] = {
@@ -18,7 +19,7 @@ int main(int argc, char *argv[]) {
     int ny; // N
 
     int max_iterations;
-    t_float error;
+    t_float error = 0.0;
     int opt;
     char *output_file;
 
@@ -49,13 +50,13 @@ int main(int argc, char *argv[]) {
         }
     }
 
+#ifdef DEBUG
     // Printa as opões que recebeu
     printf("\nnx = %d\n", nx);
     printf("\nny = %d\n", ny);
     printf("\ni = %d\n", max_iterations);
     printf("\no = %s\n", output_file);
-
-    /******************************************/
+#endif
 
     // Comprimento dos lados
     t_float lx = pi;
@@ -94,33 +95,39 @@ int main(int argc, char *argv[]) {
 
     int k = 0;
 
-    for (int j = 0; j < nx; j++) {
-        for (int i = 0; i < ny; i++) {
-            k++;
-            SL.b[k] = pow(hx, 2) * pow(hy, 2) * f(i * hx, j * hy);
+    for (int j = 1; j < ny; j++) {
+        for (int i = 1; i < nx; i++) {
+            SL.b[k] = pow(hx, 2) * pow(hy, 2) * f(i * hx, j * hy); //ok
+
+            int left_boundary = 0; // fronteira da esquerda
+            int right_boundary = 0; // fronteira da direita
+
             if (i == 1) {
-                SL.b[k] -= pow(hy, 2) * 0;
+                SL.b[k] -= ( -2 * pow(hy, 2) - hx * pow(hy, 2)) * left_boundary;
                 if (j > 1) {
                     SL.bottom_diagonal[k-1] = 0;
                 }
             }
-            if (i == ny) {
-                SL.b[k] -= pow(hy, 2) * 0;
-                if (j < nx) {
+
+            if (i == nx-1) {
+                SL.b[k] -= (hx * pow(hy, 2) - 2 * pow(hy, 2)) * right_boundary;
+                if (j < ny) {
                     SL.upper_diagonal[k+1] = 0;
                 }
             }
+
             if (j == 1) {
-                SL.b[k] -= pow(hx, 2) * sin(2 * pi * (pi - (i * hx)) * sinh(pow(pi, 2)));
+                SL.b[k] -= (-2 * pow(hx, 2) - pow(hx, 2) * hy) * sin(2 * pi * (pi - i)) * sinh(pow(pi, 2));
             }
-            if (j == nx) {
-                SL.b[k] -= pow(hx, 2) * sin(2 * pi * (i * hx) * sinh(pow(pi, 2)));
+
+            if (j == ny) {
+                SL.b[k] -= (pow(hx, 2) * hy - 2 * pow(hx, 2) * sin(2 * pi * i) * sinh(pow(pi, 2)));
             }
+            k++;
         }
     }
 
-    /* Printar essa caralha toda agora */
-
+#ifdef DEBUG
     printf("\n");
     for(int i = 0; i < (nx * ny) - 2; i++) {
         printf("%lf ", SL.away_upper_diagonal[i]);
@@ -147,17 +154,30 @@ int main(int argc, char *argv[]) {
         printf("%lf ", SL.b[i]);
     }
     printf("\n");
+#endif
 
-    /* Jogar o Sistema Linear no Gauss-Seidel */
+    /* Resolver o Sistema Linear pelo método de Gauss-Seidel */
     t_float *x = calloc(SL.n, sizeof(t_float)); // Vetor solução
-    gaussSeidel(&SL, x, error, max_iterations);
+    double *iterations_timestamp = calloc(max_iterations+1, sizeof(double));
+    t_float *residues = calloc(max_iterations, sizeof(double));
+    gaussSeidel(&SL, x, error, max_iterations, iterations_timestamp, residues, nx);
 
+#ifdef DEBUG
     printf("\n ## Vetor Solução ## \n");
     printf("X = ");
     for(int i = 0; i < SL.n; i++) {
         printf("%lf ", x[i]);
     }
-    printf("\n\n");
+    printf("\n");
+    printf("\n ## Vetor de timestamps para cada iteração de Gauss Seidel ## \n");
+    for(int i = 1; i < max_iterations; i++) {
+        printf("%lf ", iterations_timestamp[i]);
+    }
+#endif
+
+    double averageTimeGS = averageTimeGaussSeidel(iterations_timestamp, max_iterations);
+    /* Gera o arquivo de saída */
+    generateOuputFile(x, SL.n, averageTimeGS, output_file, residues, max_iterations, nx, ny, hx, hy);
 
     return 0;
 }

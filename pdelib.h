@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <getopt.h>
-// Cabeçalhos das funções da pdelib.c e structs
+#include <stdlib.h>
+#include <sys/time.h>
 
 #define pi 3.14159265359
 typedef double t_float;
@@ -22,6 +23,14 @@ t_float f(t_float xi, t_float yj);
 
 void allocatePentadiagonalLinearSystem(t_LS5Diag *SL, int nx, int ny);
 
-void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations);
+void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations, double *iterations_timestamp, t_float *residues, int nx);
 
 void show_help(char *name);
+
+void generateOuputFile(t_float *x, int n, double averageTimeGS, char *filename, t_float *residues, int max_iterations, int nx, int ny, int hx, int hy);
+
+double timestamp(void);
+
+double averageTimeGaussSeidel(double *iterations_timestamp, int max_iterations);
+
+t_float calculateResidue (t_LS5Diag *SL, t_float *x, int nx);

@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/guilhermemorais/CLionProjects/icc/trab1
+CMAKE_SOURCE_DIR = /Users/guilhermemorais/CLionProjects/trab1-icc
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/trab1.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/trab1.dir/flags.make
 
 CMakeFiles/trab1.dir/main.c.o: CMakeFiles/trab1.dir/flags.make
 CMakeFiles/trab1.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/trab1.dir/main.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/trab1.dir/main.c.o   -c /Users/guilhermemorais/CLionProjects/icc/trab1/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/trab1.dir/main.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/trab1.dir/main.c.o   -c /Users/guilhermemorais/CLionProjects/trab1-icc/main.c
 
 CMakeFiles/trab1.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/trab1.dir/main.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/guilhermemorais/CLionProjects/icc/trab1/main.c > CMakeFiles/trab1.dir/main.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/guilhermemorais/CLionProjects/trab1-icc/main.c > CMakeFiles/trab1.dir/main.c.i
 
 CMakeFiles/trab1.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/trab1.dir/main.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/guilhermemorais/CLionProjects/icc/trab1/main.c -o CMakeFiles/trab1.dir/main.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/guilhermemorais/CLionProjects/trab1-icc/main.c -o CMakeFiles/trab1.dir/main.c.s
 
 CMakeFiles/trab1.dir/pdelib.c.o: CMakeFiles/trab1.dir/flags.make
 CMakeFiles/trab1.dir/pdelib.c.o: ../pdelib.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/trab1.dir/pdelib.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/trab1.dir/pdelib.c.o   -c /Users/guilhermemorais/CLionProjects/icc/trab1/pdelib.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/trab1.dir/pdelib.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/trab1.dir/pdelib.c.o   -c /Users/guilhermemorais/CLionProjects/trab1-icc/pdelib.c
 
 CMakeFiles/trab1.dir/pdelib.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/trab1.dir/pdelib.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/guilhermemorais/CLionProjects/icc/trab1/pdelib.c > CMakeFiles/trab1.dir/pdelib.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/guilhermemorais/CLionProjects/trab1-icc/pdelib.c > CMakeFiles/trab1.dir/pdelib.c.i
 
 CMakeFiles/trab1.dir/pdelib.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/trab1.dir/pdelib.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/guilhermemorais/CLionProjects/icc/trab1/pdelib.c -o CMakeFiles/trab1.dir/pdelib.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/guilhermemorais/CLionProjects/trab1-icc/pdelib.c -o CMakeFiles/trab1.dir/pdelib.c.s
 
 # Object files for target trab1
 trab1_OBJECTS = \
@@ -95,7 +95,7 @@ trab1: CMakeFiles/trab1.dir/main.c.o
 trab1: CMakeFiles/trab1.dir/pdelib.c.o
 trab1: CMakeFiles/trab1.dir/build.make
 trab1: CMakeFiles/trab1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable trab1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable trab1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/trab1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/trab1.dir/clean:
 .PHONY : CMakeFiles/trab1.dir/clean
 
 CMakeFiles/trab1.dir/depend:
-	cd /Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/guilhermemorais/CLionProjects/icc/trab1 /Users/guilhermemorais/CLionProjects/icc/trab1 /Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug /Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug /Users/guilhermemorais/CLionProjects/icc/trab1/cmake-build-debug/CMakeFiles/trab1.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/guilhermemorais/CLionProjects/trab1-icc /Users/guilhermemorais/CLionProjects/trab1-icc /Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug /Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug /Users/guilhermemorais/CLionProjects/trab1-icc/cmake-build-debug/CMakeFiles/trab1.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/trab1.dir/depend
 
