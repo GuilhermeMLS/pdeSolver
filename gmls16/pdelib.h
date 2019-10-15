@@ -27,7 +27,7 @@ void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations, d
 
 void show_help(char *name);
 
-void generateOuputFile(t_float *x, int n, double averageTimeGS, char *filename, t_float *residues, int max_iterations, int nx, int ny, t_float hx, t_float hy);
+void generateOuputFile(t_float *x, int n, double averageTimeGS, char *filename, t_float *residues, int max_iterations, int nx, int ny, int hx, int hy);
 
 double timestamp(void);
 

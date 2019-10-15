@@ -79,8 +79,8 @@ int main(int argc, char *argv[]) {
         SL.upper_diagonal[k] = (-1 * pow(hy, 2)) * (2 - hx);
     }
     // Diagonal principal
-    for (int k = 0; k < nx*ny; k++) {SL.main_diagonal[k] = 4 * (pow(hx, 2) + pow(hy, 2) + 2 * pow(pi, 2) * pow(hx, 2) * pow(hy, 2));
-
+    for (int k = 0; k < nx*ny; k++) {
+        SL.main_diagonal[k] = 4 * (pow(hx, 2) + pow(hy, 2) + 2 * pow(pi, 2) * pow(hx, 2) * pow(hy, 2));
     }
     // Diagonal inferior
     for (int k = 0; k < (nx*ny)-1; k++) {
