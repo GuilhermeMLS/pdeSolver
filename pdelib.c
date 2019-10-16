@@ -52,7 +52,7 @@ void gaussSeidel(
         // primeira equação fora do laço
         i = 0;
         xk = (SL->b[i] - (SL->upper_diagonal[i] * x[i+1]) -
-            SL->away_upper_diagonal[i] * x[i+2]
+            SL->away_upper_diagonal[i] * x[i+nx]
         ) / SL->main_diagonal[i];
         norma = fabs(xk - x[0]);
         x[i] = xk;
@@ -62,12 +62,12 @@ void gaussSeidel(
         xk = (SL->b[i] - (
             SL->bottom_diagonal[i-1] * x[i-1]) -
             SL->upper_diagonal[i] * x[i+1] -
-            SL->away_upper_diagonal[i] * x[i+2]
+            SL->away_upper_diagonal[i] * x[i+nx]
         ) / SL->main_diagonal[i];
         norma = fabs(xk - x[1]);
         x[i] = xk;
 
-        for (i = 2; i < (SL->n) - 2; i++) {
+        for (i = 2; i < (SL->n) - 3; i++) {
             xk = (SL->b[i] - SL->away_bottom_diagonal[i-2] * x[i-nx] -
                 SL->bottom_diagonal[i-1] * x[i-1] -
                 SL->upper_diagonal[i] * x[i+1] -
@@ -79,8 +79,7 @@ void gaussSeidel(
         }
 
         // Penúltima equação fora do laço
-        i++;
-        xk = (SL->b[i] - SL->away_bottom_diagonal[i-2]*x[i-2] -
+        xk = (SL->b[i] - SL->away_bottom_diagonal[i-2]*x[i-nx] -
             SL->bottom_diagonal[i-1]*x[i-1] -
             SL->upper_diagonal[i]*x[i+1]
         ) / SL->main_diagonal[i];
@@ -90,7 +89,7 @@ void gaussSeidel(
 
         // Última equação fora do laço
         i++;
-        xk = (SL->b[i] - SL->away_bottom_diagonal[i-2]*x[i-2] -
+        xk = (SL->b[i] - SL->away_bottom_diagonal[i-2]*x[i-nx] -
             SL->bottom_diagonal[i-1] * x[i-1]
         ) / SL->main_diagonal[i];
         diff = fabs(xk - x[i]);
@@ -103,7 +102,8 @@ void gaussSeidel(
         //TODO: verificar esse resíduo
 
         // t_float *R = calloc(SL->n, sizeof(t_float));
-        residues[k-1] = calculate_norma(calculateResidue(SL, x, nx));
+        //residues[k-1] = calculate_norma(calculateResidue(SL, x, nx));
+        residues[k-1] = calculateResidue(SL, x, nx);
 
         k++;
         //TODO: implementar critério de parada com base no erro
@@ -155,7 +155,7 @@ void generateOuputFile(
 //    for (int i = 0; i < n; i++) {
 //        fprintf(file_pointer, "%lf %lf %lf",x[i]);
 //    }
-    for (int i = 1; i < nx; ++i) {
+    for (int i = 0; i < nx; ++i) {
         for (int j = 0; j < ny; ++j) {
             fprintf(file_pointer, "%lf %lf %lf\n", i*hx, j*hy, x[i]);
         }
@@ -176,52 +176,52 @@ double averageTimeGaussSeidel(double *iterations_timestamp, int max_iterations)
 
 
 // Retornar o vetor n x 1 que representa o resíduo dessa iteração
-t_float calculateResidue (t_LS5Diag *SL, t_float *x, int nx) {
-    // Resíduo ->    r(i) = b - Ax(i)    -> resulta num vetor n x 1
-    // 1) multiplicar A por x
-
-    // 2) SUBTRAIR  b - Ax
-
-    // 3) retornar R
-
-}
-
+//t_float calculateResidue (t_LS5Diag *SL, t_float *x, int nx) {
+//    // Resíduo ->    r(i) = b - Ax(i)    -> resulta num vetor n x 1
+//    // 1) multiplicar A por x
 //
-//t_float calculateResidue (t_LS5Diag *SL, t_float *x, int nx)
-//{
-//    t_float R[SL->n];
-//    for (int j = 0; j < SL->n; ++j) {
-//        R[j] = 0.0;
-//    }
-//    int i = 1;
+//    // 2) SUBTRAIR  b - Ax
 //
-//    // primeira equação
-//    R[i] = SL->b[i] - (SL->main_diagonal[i] * x[i] + SL->upper_diagonal[i] * x[i+1] + SL->away_upper_diagonal[i] * x[i+nx]);
+//    // 3) retornar R
 //
-//    // equações centrais
-//    for (int i = 2; i < SL->n; ++i) {
-//        if (i > nx) {
-//            R[i] = SL->b[i] - ( SL->main_diagonal[i] * x[i] +
-//                    SL->away_bottom_diagonal[i] * x[i - nx] +
-//                    SL->bottom_diagonal[i] * x[i-1] +
-//                    SL->upper_diagonal[i] * x[i+1] +
-//                    SL->away_upper_diagonal[i] * x[i+nx]);
-//        } else {
-//            R[i] = SL->b[i] - ( SL->main_diagonal[i] * x[i] +
-//                                SL->bottom_diagonal[i] * x[i-1] +
-//                                SL->upper_diagonal[i] * x[i+1] +
-//                                SL->away_upper_diagonal[i] * x[i+nx]);
-//        }
-//    }
-//    // última equação
-//    R[i] = SL->b[i] - (SL->main_diagonal[i] * x[i] +
-//            SL->away_bottom_diagonal[i] * x[i-nx] +
-//            SL->bottom_diagonal[i] * x[i-1]);
-//
-//    t_float sum = 0.0;
-//    for (i = 1; i <= SL->n; i++) {
-//        sum += R[i] * R[i];
-//    }
-//
-//    return sqrt(sum);
 //}
+
+//
+t_float calculateResidue (t_LS5Diag *SL, t_float *x, int nx)
+{
+    t_float R[SL->n];
+    for (int j = 0; j < SL->n; ++j) {
+        R[j] = 0.0;
+    }
+    int i = 1;
+
+    // primeira equação
+    R[i] = SL->b[i] - (SL->main_diagonal[i] * x[i] + SL->upper_diagonal[i] * x[i+1] + SL->away_upper_diagonal[i] * x[i+nx]);
+
+    // equações centrais
+    for (int i = 2; i < SL->n; ++i) {
+        if (i > nx) {
+            R[i] = SL->b[i] - ( SL->main_diagonal[i] * x[i] +
+                    SL->away_bottom_diagonal[i] * x[i - nx] +
+                    SL->bottom_diagonal[i] * x[i-1] +
+                    SL->upper_diagonal[i] * x[i+1] +
+                    SL->away_upper_diagonal[i] * x[i+nx]);
+        } else {
+            R[i] = SL->b[i] - ( SL->main_diagonal[i] * x[i] +
+                                SL->bottom_diagonal[i] * x[i-1] +
+                                SL->upper_diagonal[i] * x[i+1] +
+                                SL->away_upper_diagonal[i] * x[i+nx]);
+        }
+    }
+    // última equação
+    R[i] = SL->b[i] - (SL->main_diagonal[i] * x[i] +
+            SL->away_bottom_diagonal[i] * x[i-nx] +
+            SL->bottom_diagonal[i] * x[i-1]);
+
+    t_float sum = 0.0;
+    for (i = 1; i <= SL->n; i++) {
+        sum += R[i] * R[i];
+    }
+
+    return sqrt(sum);
+}

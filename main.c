@@ -78,9 +78,9 @@ int main(int argc, char *argv[]) {
     for (int k = 0; k < (nx*ny)-1; k++) {
         SL.upper_diagonal[k] = (-1 * pow(hy, 2)) * (2 - hx);
     }
-    // Diagonal principal
-    for (int k = 0; k < nx*ny; k++) {SL.main_diagonal[k] = 4 * (pow(hx, 2) + pow(hy, 2) + 2 * pow(pi, 2) * pow(hx, 2) * pow(hy, 2));
-
+    // Diagonal principal ######## ok
+    for (int k = 0; k < nx*ny; k++) {
+        SL.main_diagonal[k] = 4 * (pow(hx, 2) + pow(hy, 2) + 2 * pow(pi, 2) * pow(hx, 2) * pow(hy, 2));
     }
     // Diagonal inferior
     for (int k = 0; k < (nx*ny)-1; k++) {
@@ -97,7 +97,7 @@ int main(int argc, char *argv[]) {
 
     for (int j = 1; j < ny; j++) {
         for (int i = 1; i < nx; i++) {
-            SL.b[k] = pow(hx, 2) * pow(hy, 2) * f(i * hx, j * hy); //ok
+            SL.b[k] = 2 * pow(hx, 2) * pow(hy, 2) * f(i * hx, j * hy); //ok
 
             int left_boundary = 0; // fronteira da esquerda
             int right_boundary = 0; // fronteira da direita
