@@ -1,0 +1,64 @@
+.TH "t_LS5Diag" 3 "Thu Oct 24 2019" "Version v2.1" "PDE Solver" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+t_LS5Diag \- Estrutura de dados que representa um sistema linear pentadiagonal\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <pdelib\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "double \fBmain_diagonal\fP"
+.br
+.ti -1c
+.RI "double \fBbottom_diagonal\fP"
+.br
+.ti -1c
+.RI "double \fBupper_diagonal\fP"
+.br
+.ti -1c
+.RI "double \fBaway_bottom_diagonal\fP"
+.br
+.ti -1c
+.RI "double \fBaway_upper_diagonal\fP"
+.br
+.ti -1c
+.RI "double * \fBb\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBnx\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBny\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Estrutura de dados que representa um sistema linear pentadiagonal\&. 
+.SH "Field Documentation"
+.PP 
+.SS "double away_bottom_diagonal"
+Constante que representa a diagonal inferior afastada 
+.SS "double away_upper_diagonal"
+Constante que representa a diagonal superior afastada 
+.SS "double* b"
+Vetor B (termos independetes) 
+.SS "double bottom_diagonal"
+Constante que representa a diagonal inferior 
+.SS "double main_diagonal"
+Constante que representa a diagonal principal 
+.SS "unsigned int nx"
+Número de pontos para discretização na direção das abscissas 
+.SS "unsigned int ny"
+Número de pontos para discretização na direção das ordenadas 
+.SS "double upper_diagonal"
+Constante que representa a diagonal superior 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PDE Solver from the source code\&.

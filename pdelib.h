@@ -1,36 +1,61 @@
+/**
+ * \file pdelib.h
+ * \brief Definições das funções da biblioteca <code>pdelib</code>.
+ * \author Guilherme M. Lopes
+ */
 #include <unistd.h>
 #include <getopt.h>
 #include <stdlib.h>
 #include <sys/time.h>
 
 #define pi 3.14159265359
+#define MAXIMUM_ERROR 6.0E-5
+
 typedef double t_float;
 
-// Linear System Pentadiagonal Type
+/**
+ * \struct t_LS5Diag
+ * \brief Estrutura de dados que representa um sistema linear pentadiagonal.
+ */
 typedef struct t_LS5Diag {
-    double *main_diagonal,
-           *bottom_diagonal,
-           *upper_diagonal,
-           *away_bottom_diagonal,
-           *away_upper_diagonal;
-    // Termos independentes
-    double *b;
-    // Número de equações do SL
-    unsigned int n;
+    double main_diagonal, /**< Constante que representa a diagonal principal */
+           bottom_diagonal, /**< Constante que representa a diagonal inferior */
+           upper_diagonal, /**< Constante que representa a diagonal superior */
+           away_bottom_diagonal, /**< Constante que representa a diagonal inferior afastada */
+           away_upper_diagonal; /**< Constante que representa a diagonal superior afastada */
+    double *b; /**< Vetor B (termos independetes) */
+    unsigned int n; /**< Variável utilizada para calcular o tamanho total da malha */
+    unsigned int nx; /**< Número de pontos para discretização na direção das abscissas */
+    unsigned int ny; /**< Número de pontos para discretização na direção das ordenadas */
 } t_LS5Diag;
 
-t_float f(t_float xi, t_float yj);
+void generateOutputFile(
+    unsigned int num_iter,
+    char* arq_saida,
+    double tempo_total_GaussSiedel,
+    t_float * residuo_iter,
+    t_LS5Diag* sist,
+    t_float * solucao
+);
 
-void allocatePentadiagonalLinearSystem(t_LS5Diag *SL, int nx, int ny);
+int get_options(int argc,
+    char **argv,
+    int *nx,
+    int *ny,
+    int *max_iterations,
+    char **output_file
+);
 
-void gaussSeidel(t_LS5Diag *SL, t_float *x, t_float error, int max_iterations, double *iterations_timestamp, t_float *residues, int nx);
+void allocate_and_start_linear_system(t_LS5Diag **SL, int nx, int ny);
+
+void allocate_and_start_solution( t_float **u, t_LS5Diag *SL );
+
+t_float calculate_residues(t_LS5Diag *SL, t_float *u);
+
+void gaussSeidel( t_LS5Diag **SL, t_float **u );
+
+int calculate_index(int i,int j,int n);
 
 void show_help(char *name);
 
-void generateOuputFile(t_float *x, int n, double averageTimeGS, char *filename, t_float *residues, int max_iterations, int nx, int ny, t_float hx, t_float hy);
-
 double timestamp(void);
-
-double averageTimeGaussSeidel(double *iterations_timestamp, int max_iterations);
-
-t_float calculateResidue (t_LS5Diag *SL, t_float *x, int nx);

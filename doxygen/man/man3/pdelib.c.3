@@ -1,0 +1,209 @@
+.TH "/Users/guilhermemorais/CLionProjects/trab1-icc/pdelib.c" 3 "Thu Oct 24 2019" "Version v2.1" "PDE Solver" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/Users/guilhermemorais/CLionProjects/trab1-icc/pdelib.c \- Implementação da das funções da biblioteca \fCpdelib\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'pdelib\&.h'\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBcalculate_index\fP (int i, int j, int n)"
+.br
+.RI "Função utilitária para acessar a posição (i, j) em matrizes alocadas como vetores\&. "
+.ti -1c
+.RI "double \fBtimestamp\fP (void)"
+.br
+.RI "Função utilitária para calcular o tempo de execução\&. "
+.ti -1c
+.RI "int \fBget_options\fP (int argc, char **argv, int *nx, int *ny, int *max_iterations, char **output_file)"
+.br
+.RI "Lê e guarda os argumentos passados pela linha de comando\&. "
+.ti -1c
+.RI "void \fBallocate_and_start_linear_system\fP (\fBt_LS5Diag\fP **SL, int nx, int ny)"
+.br
+.RI "Aloca e inicializa o sistema linear\&. "
+.ti -1c
+.RI "void \fBgaussSeidel\fP (\fBt_LS5Diag\fP **SL, \fBt_float\fP **u)"
+.br
+.RI "Método de Gauss-Seidel para encontrar uma solução para o sistema linear de forma iterativa\&. "
+.ti -1c
+.RI "void \fBshow_help\fP (char *name)"
+.br
+.RI "Função que imprime a ajuda na saída padrão\&. "
+.ti -1c
+.RI "void \fBgenerateOutputFile\fP (unsigned int iterations, char *output_file, double gauss_seidel_total_time, \fBt_float\fP *residues, \fBt_LS5Diag\fP *SL, \fBt_float\fP *u)"
+.br
+.RI "Gera o arquivo de saída\&. "
+.ti -1c
+.RI "void \fBallocate_and_start_solution\fP (\fBt_float\fP **u, \fBt_LS5Diag\fP *SL)"
+.br
+.RI "Método de Gauss-Seidel para encontrar uma solução para o sistema linear de forma iterativa\&. "
+.ti -1c
+.RI "\fBt_float\fP \fBcalculate_residues\fP (\fBt_LS5Diag\fP *SL, \fBt_float\fP *u)"
+.br
+.RI "Calcula os resíduos de cada iteração e retorna a norma L2\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Implementação da das funções da biblioteca \fCpdelib\fP\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+Guilherme M\&. Lopes 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "void allocate_and_start_linear_system (\fBt_LS5Diag\fP ** SL, int nx, int ny)"
+
+.PP
+Aloca e inicializa o sistema linear\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fISL\fP Ponteiro para a estrutura do sistema linear; 
+.br
+\fInx\fP Quantidade de pontos para discretização no eixo das abscissas; 
+.br
+\fIny\fP Quantidade de pontos para discretização no eixo das ordenadas\&. 
+.RE
+.PP
+
+.SS "void allocate_and_start_solution (\fBt_float\fP ** u, \fBt_LS5Diag\fP * SL)"
+
+.PP
+Método de Gauss-Seidel para encontrar uma solução para o sistema linear de forma iterativa\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fISL\fP Estrutura representando um sistema linear; 
+.br
+\fIu\fP vetor solução; 
+.RE
+.PP
+
+.SS "int calculate_index (int i, int j, int n)"
+
+.PP
+Função utilitária para acessar a posição (i, j) em matrizes alocadas como vetores\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP Linha 
+.br
+\fIj\fP Coluna 
+.br
+\fIn\fP Número de linhas da matriz
+.RE
+.PP
+Matrizes alocadas como vetores possuem todos os seus campos alocados de forma
+.br
+contínua, como se fossem \fCarrays\fP\&. Para acessar a posição (i, j) de uma matriz
+.br
+alocada desta forma, basta usar esta função\&. 
+.SS "\fBt_float\fP calculate_residues (\fBt_LS5Diag\fP * SL, \fBt_float\fP * u)"
+
+.PP
+Calcula os resíduos de cada iteração e retorna a norma L2\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fISL\fP Estrutura representando um sistema linear; 
+.br
+\fIu\fP vetor solução; 
+.RE
+.PP
+
+.SS "void gaussSeidel (\fBt_LS5Diag\fP ** SL, \fBt_float\fP ** u)"
+
+.PP
+Método de Gauss-Seidel para encontrar uma solução para o sistema linear de forma iterativa\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fISL\fP Estrutura representando um sistema linear; 
+.br
+\fIu\fP vetor solução; 
+.RE
+.PP
+
+.SS "void generateOutputFile (unsigned int iterations, char * output_file, double gauss_seidel_total_time, \fBt_float\fP * residues, \fBt_LS5Diag\fP * SL, \fBt_float\fP * u)"
+
+.PP
+Gera o arquivo de saída\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIiterations\fP Número de iterações; 
+.br
+\fIoutput_file\fP Nome do arquivo de saída; 
+.br
+\fIgauss_seidel_total_time\fP Tempo de execução do método de Gauss-Seidel; 
+.br
+\fIresidues\fP Vetor de resíduos; 
+.br
+\fISL\fP Estrutura do Sistema Linear; 
+.br
+\fIu\fP Vetor de solução\&.
+.RE
+.PP
+Esta função gera um arquivo de saída com o nome \fCoutput_file\fP que serve de entrada
+.br
+ para o programa Gnuplot\&. No começo do arquivo, esta função escreve um comentário com o tempo de execução do
+.br
+ método de Gauss-Seidel e o resíduo para cada iteração\&. 
+.SS "int get_options (int argc, char ** argv, int * nx, int * ny, int * max_iterations, char ** output_file)"
+
+.PP
+Lê e guarda os argumentos passados pela linha de comando\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIargc\fP Quantidade de argumentos passados; 
+.br
+\fIargv\fP Argumentos; 
+.br
+\fInx\fP Referência à variável nx, que representa a quantidade de pontos a serem representados no eixo X; 
+.br
+\fIny\fP Referência à variável ny, que representa a quantidade de pontos a serem representados no eixo Y; 
+.br
+\fImax_iterations\fP Número máximo de iterações para o Método de Gauss-Seidel; 
+.br
+\fIoutput_file\fP Nome do arquivo de saída que deve conter a solução; 
+.RE
+.PP
+
+.SS "void show_help (char * name)"
+
+.PP
+Função que imprime a ajuda na saída padrão\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP Nome do programa; 
+.RE
+.PP
+
+.SS "double timestamp (void)"
+
+.PP
+Função utilitária para calcular o tempo de execução\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PDE Solver from the source code\&.

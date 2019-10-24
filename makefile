@@ -1,4 +1,4 @@
-FLAGS=  -Wall 
+FLAGS=  -Wall -g 
 DEBUG= -Wall -g -DDEBUG 
 CXX=gcc
 RM=rm -rf
@@ -11,3 +11,8 @@ pdelib.o: pdelib.c  pdelib.h Makefile
 
 clean:
 	$(RM) pdeSolver *.o
+
+doc: $(OBJ)
+	doxygen ./Doxyfile
+#doc: *.c trabalho-1.doxy *.h
+#	@doxygen trabalho-1.doxy
