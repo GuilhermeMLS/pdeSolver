@@ -1,0 +1,211 @@
+\hypertarget{pdelib_8c}{}\doxysection{/\+Users/guilhermemorais/\+C\+Lion\+Projects/trab1-\/icc/pdelib.c File Reference}
+\label{pdelib_8c}\index{/Users/guilhermemorais/CLionProjects/trab1-\/icc/pdelib.c@{/Users/guilhermemorais/CLionProjects/trab1-\/icc/pdelib.c}}
+
+
+Implementação da das funções da biblioteca {\ttfamily pdelib}.  
+
+
+{\ttfamily \#include \char`\"{}pdelib.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pdelib_8c_aa328e4b6aaa5d1001ce42330fdc44bf3}{calculate\+\_\+index}} (int i, int j, int n)
+\begin{DoxyCompactList}\small\item\em Função utilitária para acessar a posição (i, j) em matrizes alocadas como vetores. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{pdelib_8c_ad1f75d4b6d05731f71dd8fe6ee54bfeb}{timestamp}} (void)
+\begin{DoxyCompactList}\small\item\em Função utilitária para calcular o tempo de execução. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pdelib_8c_afa692d565f8611db3356748fbf02fb12}{get\+\_\+options}} (int argc, char $\ast$$\ast$argv, int $\ast$nx, int $\ast$ny, int $\ast$max\+\_\+iterations, char $\ast$$\ast$output\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Lê e guarda os argumentos passados pela linha de comando. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pdelib_8c_a1ea065fb53eade4fed1f6fa623483095}{allocate\+\_\+and\+\_\+start\+\_\+linear\+\_\+system}} (\mbox{\hyperlink{structt___l_s5_diag}{t\+\_\+\+L\+S5\+Diag}} $\ast$$\ast$SL, int nx, int ny)
+\begin{DoxyCompactList}\small\item\em Aloca e inicializa o sistema linear. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pdelib_8c_a182aa391a11b5e744e7e64a3536dc7da}{gauss\+Seidel}} (\mbox{\hyperlink{structt___l_s5_diag}{t\+\_\+\+L\+S5\+Diag}} $\ast$$\ast$SL, \mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} $\ast$$\ast$u)
+\begin{DoxyCompactList}\small\item\em Método de Gauss-\/\+Seidel para encontrar uma solução para o sistema linear de forma iterativa. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pdelib_8c_a83d801e13cc875bfa34e9cf132b9883f}{show\+\_\+help}} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Função que imprime a ajuda na saída padrão. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pdelib_8c_ab7ecd5b0ce4b9bc177fcf9055a5862d4}{generate\+Output\+File}} (unsigned int iterations, char $\ast$output\+\_\+file, double gauss\+\_\+seidel\+\_\+total\+\_\+time, \mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} $\ast$residues, \mbox{\hyperlink{structt___l_s5_diag}{t\+\_\+\+L\+S5\+Diag}} $\ast$SL, \mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} $\ast$u)
+\begin{DoxyCompactList}\small\item\em Gera o arquivo de saída. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pdelib_8c_a98bd6d25a01645f62444e019353324e9}{allocate\+\_\+and\+\_\+start\+\_\+solution}} (\mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} $\ast$$\ast$u, \mbox{\hyperlink{structt___l_s5_diag}{t\+\_\+\+L\+S5\+Diag}} $\ast$SL)
+\begin{DoxyCompactList}\small\item\em Método de Gauss-\/\+Seidel para encontrar uma solução para o sistema linear de forma iterativa. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} \mbox{\hyperlink{pdelib_8c_a406b14fb42830099a6fed19ca377ef9f}{calculate\+\_\+residues}} (\mbox{\hyperlink{structt___l_s5_diag}{t\+\_\+\+L\+S5\+Diag}} $\ast$SL, \mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} $\ast$u)
+\begin{DoxyCompactList}\small\item\em Calcula os resíduos de cada iteração e retorna a norma L2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementação da das funções da biblioteca {\ttfamily pdelib}. 
+
+\begin{DoxyAuthor}{Author}
+Guilherme M. Lopes 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pdelib_8c_a1ea065fb53eade4fed1f6fa623483095}\label{pdelib_8c_a1ea065fb53eade4fed1f6fa623483095}} 
+\index{pdelib.c@{pdelib.c}!allocate\_and\_start\_linear\_system@{allocate\_and\_start\_linear\_system}}
+\index{allocate\_and\_start\_linear\_system@{allocate\_and\_start\_linear\_system}!pdelib.c@{pdelib.c}}
+\doxysubsubsection{\texorpdfstring{allocate\_and\_start\_linear\_system()}{allocate\_and\_start\_linear\_system()}}
+{\footnotesize\ttfamily void allocate\+\_\+and\+\_\+start\+\_\+linear\+\_\+system (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structt___l_s5_diag}{t\+\_\+\+L\+S5\+Diag}} $\ast$$\ast$}]{SL,  }\item[{int}]{nx,  }\item[{int}]{ny }\end{DoxyParamCaption})}
+
+
+
+Aloca e inicializa o sistema linear. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em SL} & Ponteiro para a estrutura do sistema linear; \\
+\hline
+{\em nx} & Quantidade de pontos para discretização no eixo das abscissas; \\
+\hline
+{\em ny} & Quantidade de pontos para discretização no eixo das ordenadas. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdelib_8c_a98bd6d25a01645f62444e019353324e9}\label{pdelib_8c_a98bd6d25a01645f62444e019353324e9}} 
+\index{pdelib.c@{pdelib.c}!allocate\_and\_start\_solution@{allocate\_and\_start\_solution}}
+\index{allocate\_and\_start\_solution@{allocate\_and\_start\_solution}!pdelib.c@{pdelib.c}}
+\doxysubsubsection{\texorpdfstring{allocate\_and\_start\_solution()}{allocate\_and\_start\_solution()}}
+{\footnotesize\ttfamily void allocate\+\_\+and\+\_\+start\+\_\+solution (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} $\ast$$\ast$}]{u,  }\item[{\mbox{\hyperlink{structt___l_s5_diag}{t\+\_\+\+L\+S5\+Diag}} $\ast$}]{SL }\end{DoxyParamCaption})}
+
+
+
+Método de Gauss-\/\+Seidel para encontrar uma solução para o sistema linear de forma iterativa. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em SL} & Estrutura representando um sistema linear; \\
+\hline
+{\em u} & vetor solução; \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdelib_8c_aa328e4b6aaa5d1001ce42330fdc44bf3}\label{pdelib_8c_aa328e4b6aaa5d1001ce42330fdc44bf3}} 
+\index{pdelib.c@{pdelib.c}!calculate\_index@{calculate\_index}}
+\index{calculate\_index@{calculate\_index}!pdelib.c@{pdelib.c}}
+\doxysubsubsection{\texorpdfstring{calculate\_index()}{calculate\_index()}}
+{\footnotesize\ttfamily int calculate\+\_\+index (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Função utilitária para acessar a posição (i, j) em matrizes alocadas como vetores. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Linha \\
+\hline
+{\em j} & Coluna \\
+\hline
+{\em n} & Número de linhas da matriz\\
+\hline
+\end{DoxyParams}
+Matrizes alocadas como vetores possuem todos os seus campos alocados de forma~\newline
+contínua, como se fossem {\ttfamily arrays}. Para acessar a posição (i, j) de uma matriz~\newline
+alocada desta forma, basta usar esta função. \mbox{\Hypertarget{pdelib_8c_a406b14fb42830099a6fed19ca377ef9f}\label{pdelib_8c_a406b14fb42830099a6fed19ca377ef9f}} 
+\index{pdelib.c@{pdelib.c}!calculate\_residues@{calculate\_residues}}
+\index{calculate\_residues@{calculate\_residues}!pdelib.c@{pdelib.c}}
+\doxysubsubsection{\texorpdfstring{calculate\_residues()}{calculate\_residues()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} calculate\+\_\+residues (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structt___l_s5_diag}{t\+\_\+\+L\+S5\+Diag}} $\ast$}]{SL,  }\item[{\mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} $\ast$}]{u }\end{DoxyParamCaption})}
+
+
+
+Calcula os resíduos de cada iteração e retorna a norma L2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em SL} & Estrutura representando um sistema linear; \\
+\hline
+{\em u} & vetor solução; \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdelib_8c_a182aa391a11b5e744e7e64a3536dc7da}\label{pdelib_8c_a182aa391a11b5e744e7e64a3536dc7da}} 
+\index{pdelib.c@{pdelib.c}!gaussSeidel@{gaussSeidel}}
+\index{gaussSeidel@{gaussSeidel}!pdelib.c@{pdelib.c}}
+\doxysubsubsection{\texorpdfstring{gaussSeidel()}{gaussSeidel()}}
+{\footnotesize\ttfamily void gauss\+Seidel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structt___l_s5_diag}{t\+\_\+\+L\+S5\+Diag}} $\ast$$\ast$}]{SL,  }\item[{\mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} $\ast$$\ast$}]{u }\end{DoxyParamCaption})}
+
+
+
+Método de Gauss-\/\+Seidel para encontrar uma solução para o sistema linear de forma iterativa. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em SL} & Estrutura representando um sistema linear; \\
+\hline
+{\em u} & vetor solução; \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdelib_8c_ab7ecd5b0ce4b9bc177fcf9055a5862d4}\label{pdelib_8c_ab7ecd5b0ce4b9bc177fcf9055a5862d4}} 
+\index{pdelib.c@{pdelib.c}!generateOutputFile@{generateOutputFile}}
+\index{generateOutputFile@{generateOutputFile}!pdelib.c@{pdelib.c}}
+\doxysubsubsection{\texorpdfstring{generateOutputFile()}{generateOutputFile()}}
+{\footnotesize\ttfamily void generate\+Output\+File (\begin{DoxyParamCaption}\item[{unsigned int}]{iterations,  }\item[{char $\ast$}]{output\+\_\+file,  }\item[{double}]{gauss\+\_\+seidel\+\_\+total\+\_\+time,  }\item[{\mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} $\ast$}]{residues,  }\item[{\mbox{\hyperlink{structt___l_s5_diag}{t\+\_\+\+L\+S5\+Diag}} $\ast$}]{SL,  }\item[{\mbox{\hyperlink{pdelib_8h_af8bbd7351ff68614b4975ea4403fc0eb}{t\+\_\+float}} $\ast$}]{u }\end{DoxyParamCaption})}
+
+
+
+Gera o arquivo de saída. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterations} & Número de iterações; \\
+\hline
+{\em output\+\_\+file} & Nome do arquivo de saída; \\
+\hline
+{\em gauss\+\_\+seidel\+\_\+total\+\_\+time} & Tempo de execução do método de Gauss-\/\+Seidel; \\
+\hline
+{\em residues} & Vetor de resíduos; \\
+\hline
+{\em SL} & Estrutura do Sistema Linear; \\
+\hline
+{\em u} & Vetor de solução.\\
+\hline
+\end{DoxyParams}
+Esta função gera um arquivo de saída com o nome {\ttfamily output\+\_\+file} que serve de entrada~\newline
+ para o programa Gnuplot. No começo do arquivo, esta função escreve um comentário com o tempo de execução do~\newline
+ método de Gauss-\/\+Seidel e o resíduo para cada iteração. \mbox{\Hypertarget{pdelib_8c_afa692d565f8611db3356748fbf02fb12}\label{pdelib_8c_afa692d565f8611db3356748fbf02fb12}} 
+\index{pdelib.c@{pdelib.c}!get\_options@{get\_options}}
+\index{get\_options@{get\_options}!pdelib.c@{pdelib.c}}
+\doxysubsubsection{\texorpdfstring{get\_options()}{get\_options()}}
+{\footnotesize\ttfamily int get\+\_\+options (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{int $\ast$}]{nx,  }\item[{int $\ast$}]{ny,  }\item[{int $\ast$}]{max\+\_\+iterations,  }\item[{char $\ast$$\ast$}]{output\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Lê e guarda os argumentos passados pela linha de comando. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Quantidade de argumentos passados; \\
+\hline
+{\em argv} & Argumentos; \\
+\hline
+{\em nx} & Referência à variável nx, que representa a quantidade de pontos a serem representados no eixo X; \\
+\hline
+{\em ny} & Referência à variável ny, que representa a quantidade de pontos a serem representados no eixo Y; \\
+\hline
+{\em max\+\_\+iterations} & Número máximo de iterações para o Método de Gauss-\/\+Seidel; \\
+\hline
+{\em output\+\_\+file} & Nome do arquivo de saída que deve conter a solução; \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdelib_8c_a83d801e13cc875bfa34e9cf132b9883f}\label{pdelib_8c_a83d801e13cc875bfa34e9cf132b9883f}} 
+\index{pdelib.c@{pdelib.c}!show\_help@{show\_help}}
+\index{show\_help@{show\_help}!pdelib.c@{pdelib.c}}
+\doxysubsubsection{\texorpdfstring{show\_help()}{show\_help()}}
+{\footnotesize\ttfamily void show\+\_\+help (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Função que imprime a ajuda na saída padrão. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Nome do programa; \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdelib_8c_ad1f75d4b6d05731f71dd8fe6ee54bfeb}\label{pdelib_8c_ad1f75d4b6d05731f71dd8fe6ee54bfeb}} 
+\index{pdelib.c@{pdelib.c}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!pdelib.c@{pdelib.c}}
+\doxysubsubsection{\texorpdfstring{timestamp()}{timestamp()}}
+{\footnotesize\ttfamily double timestamp (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Função utilitária para calcular o tempo de execução. 
+
