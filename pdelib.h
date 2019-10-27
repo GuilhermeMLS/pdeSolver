@@ -30,12 +30,12 @@ typedef struct t_LS5Diag {
 } t_LS5Diag;
 
 void generateOutputFile(
-    unsigned int num_iter,
-    char* arq_saida,
-    double tempo_total_GaussSiedel,
-    t_float * residuo_iter,
-    t_LS5Diag* sist,
-    t_float * solucao
+    unsigned int iterations,
+    char* output_file,
+    double gauss_seidel_total_time,
+    t_float *residues,
+    t_LS5Diag *SL,
+    t_float *u
 );
 
 int get_options(int argc,
