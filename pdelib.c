@@ -179,6 +179,7 @@ void show_help(char *name) {
  *  \param iterations: Número de iterações;
  *  \param output_file: Nome do arquivo de saída;
  *  \param gauss_seidel_total_time: Tempo de execução do método de Gauss-Seidel;
+ *  \param residue_total_time: Tempo de execução do cálculo do resíduo;
  *  \param residues: Vetor de resíduos;
  *  \param SL: Estrutura do Sistema Linear;
  *  \param u: Vetor de solução.
@@ -190,6 +191,7 @@ void generateOutputFile(
     unsigned int iterations,
     char* output_file,
     double gauss_seidel_total_time,
+    double residue_total_time,
     t_float *residues,
     t_LS5Diag *SL,
     t_float *u
@@ -203,6 +205,7 @@ void generateOutputFile(
 
     fprintf(output, "###########\n");
     fprintf(output, "# Tempo Gauss-Seidel: %f ms.\n", ( gauss_seidel_total_time / iterations ));
+    fprintf(output, "# Tempo Resíduo: %f ms.\n", ( residue_total_time / iterations ));
     fprintf(output, "#\n# Norma L2 do resíduo\n");
 
     for (unsigned int i = 1; i <= iterations; i++) {

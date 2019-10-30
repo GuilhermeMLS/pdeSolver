@@ -33,6 +33,7 @@ void generateOutputFile(
     unsigned int iterations,
     char* output_file,
     double gauss_seidel_total_time,
+    double residue_total_time,
     t_float *residues,
     t_LS5Diag *SL,
     t_float *u

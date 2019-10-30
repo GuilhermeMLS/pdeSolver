@@ -1,5 +1,6 @@
 ###########
-# Tempo Gauss-Seidel: 0.404206 ms.
+# Tempo Gauss-Seidel: 0.139329 ms.
+# Tempo Resíduo: 0.028832 ms.
 #
 # Norma L2 do resíduo
 # i = 1: 33520432.458532

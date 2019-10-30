@@ -1,4 +1,4 @@
-FLAGS=  -O3 -mavx -march=native
+FLAGS=  -Wall -g -lm
 DEBUG= -Wall -g -DDEBUG 
 CXX=gcc
 RM=rm -rf
