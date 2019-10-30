@@ -47,6 +47,7 @@ int main(int argc, char *argv[]) {
 
     double initial_time;
     double gauss_seidel_total_time = 0;
+    double residue_total_time = 0;
 
     unsigned int k = 0;
     do {
@@ -54,8 +55,11 @@ int main(int argc, char *argv[]) {
         initial_time = timestamp();
         gaussSeidel(&SL, &u);
         gauss_seidel_total_time += (timestamp() - initial_time);
+
         // Calcula Residuo da iteração
+        initial_time = timestamp();
         residues[k-1] = calculate_residues(SL, u);
+        residue_total_time += (timestamp() - initial_time);
     } while(((k <= max_iterations) && (residues[k-1] >= MAXIMUM_ERROR)));
 
     if (residues[k-1] >= MAXIMUM_ERROR) {
@@ -64,7 +68,7 @@ int main(int argc, char *argv[]) {
         return (-1);
     }
 
-    generateOutputFile(k, output_file, gauss_seidel_total_time, residues, SL, u);
+    generateOutputFile(k, output_file, gauss_seidel_total_time, residue_total_time, residues, SL, u);
 
     return 0;
 }
