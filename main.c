@@ -58,11 +58,11 @@ int main(int argc, char *argv[]) {
         residues[k-1] = calculate_residues(SL, u);
     } while(((k <= max_iterations) && (residues[k-1] >= MAXIMUM_ERROR)));
 
-    if (residues[k-1] >= MAXIMUM_ERROR) {
-        perror("Não convergiu\n");
-
-        return (-1);
-    }
+//    if (residues[k-1] >= MAXIMUM_ERROR) {
+//        perror("Não convergiu\n");
+//
+//        return (-1);
+//    }
 
     generateOutputFile(k, output_file, gauss_seidel_total_time, residues, SL, u);
 
