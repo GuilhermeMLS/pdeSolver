@@ -88,7 +88,7 @@ int get_options(int argc, char **argv, int *nx, int *ny, int *max_iterations, ch
  */
 void allocate_and_start_linear_system(t_LS5Diag **SL, int nx, int ny) {
     *SL = malloc(sizeof(t_LS5Diag));
-    (*SL)->b = malloc(sizeof(t_float) * (nx + 2 * ny + 2));
+    (*SL)->b = malloc(sizeof(t_float) * ((nx + 2) * (ny + 2)));
     (*SL)->n = nx * ny;
     const float_t hx = pi / (nx + 1);
     const float_t hy = pi / (ny + 1);
